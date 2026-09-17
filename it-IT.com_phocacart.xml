@@ -18,4 +18,7 @@
         <filename>it-IT.com_phocacart.sys.ini</filename>
 </files>
     </fileset>
+    <updateservers>
+        <server type="extension" priority="1" name="it-IT.com_phocacart update site">https://raw.githubusercontent.com/titobrasolin/it-IT.com_phocacart/main/update.xml</server>
+    </updateservers>
 </extension>

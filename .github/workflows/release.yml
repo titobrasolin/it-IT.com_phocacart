@@ -1,0 +1,109 @@
+name: Publish language pack
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "it-IT.com_phocacart.ini"
+      - "it-IT.com_phocacart.sys.ini"
+      - "it-IT.com_phocacart.xml"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: release
+  cancel-in-progress: false
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Compute version
+        id: version
+        run: |
+          BASE=$(grep -oPm1 '(?<=<version>)[0-9]+\.[0-9]+' it-IT.com_phocacart.xml)
+          VERSION="${BASE}.${{ github.run_number }}"
+          echo "version=$VERSION" >> "$GITHUB_OUTPUT"
+          echo "tag=v$VERSION" >> "$GITHUB_OUTPUT"
+
+      - name: Bump manifest version
+        run: |
+          sed -i "s#<version>[0-9]\+\.[0-9]\+\.[0-9]\+</version>#<version>${{ steps.version.outputs.version }}</version>#" it-IT.com_phocacart.xml
+          sed -i "s#<creationDate>.*</creationDate>#<creationDate>$(date -u +%Y-%m-%d)</creationDate>#" it-IT.com_phocacart.xml
+
+      - name: Build package zip
+        run: |
+          ZIP_NAME="it-IT_com_phocacart_lang_${{ steps.version.outputs.version }}.zip"
+          echo "ZIP_NAME=$ZIP_NAME" >> "$GITHUB_ENV"
+          zip -j "$ZIP_NAME" it-IT.com_phocacart.ini it-IT.com_phocacart.sys.ini it-IT.com_phocacart.xml
+
+      - name: Generate Joomla update site
+        env:
+          VERSION: ${{ steps.version.outputs.version }}
+          TAG: ${{ steps.version.outputs.tag }}
+          REPO: ${{ github.repository }}
+          OWNER: ${{ github.repository_owner }}
+        run: |
+          DOWNLOAD_URL="https://github.com/${REPO}/releases/download/${TAG}/${ZIP_NAME}"
+          cat > update.xml <<EOF
+          <?xml version="1.0" encoding="utf-8"?>
+          <updates>
+              <update>
+                  <name>it-IT com_phocacart translation</name>
+                  <description>Traduzione italiana per PhocaCart, corretta e mantenuta a partire dal pacchetto generato dall'IA ufficiale di Phoca.</description>
+                  <element>com_phocacart</element>
+                  <type>file</type>
+                  <client>site</client>
+                  <version>${VERSION}</version>
+                  <infourl title="it-IT.com_phocacart on GitHub">https://github.com/${REPO}</infourl>
+                  <downloads>
+                      <downloadurl type="full" format="zip">${DOWNLOAD_URL}</downloadurl>
+                  </downloads>
+                  <tags>
+                      <tag>stable</tag>
+                  </tags>
+                  <maintainer>Tito Brasolin</maintainer>
+                  <maintainerurl>https://github.com/${OWNER}</maintainerurl>
+                  <targetplatform name="joomla" version="4"/>
+              </update>
+              <update>
+                  <name>it-IT com_phocacart translation</name>
+                  <description>Traduzione italiana per PhocaCart, corretta e mantenuta a partire dal pacchetto generato dall'IA ufficiale di Phoca.</description>
+                  <element>com_phocacart</element>
+                  <type>file</type>
+                  <client>site</client>
+                  <version>${VERSION}</version>
+                  <infourl title="it-IT.com_phocacart on GitHub">https://github.com/${REPO}</infourl>
+                  <downloads>
+                      <downloadurl type="full" format="zip">${DOWNLOAD_URL}</downloadurl>
+                  </downloads>
+                  <tags>
+                      <tag>stable</tag>
+                  </tags>
+                  <maintainer>Tito Brasolin</maintainer>
+                  <maintainerurl>https://github.com/${OWNER}</maintainerurl>
+                  <targetplatform name="joomla" version="5"/>
+              </update>
+          </updates>
+          EOF
+
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: ${{ steps.version.outputs.tag }}
+          name: ${{ steps.version.outputs.tag }}
+          files: ${{ env.ZIP_NAME }}
+          generate_release_notes: true
+
+      - name: Commit manifest and update site
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add it-IT.com_phocacart.xml update.xml
+          git commit -m "chore: release ${{ steps.version.outputs.tag }} [skip ci]" || echo "Nothing to commit"
+          git push
