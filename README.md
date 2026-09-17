@@ -19,7 +19,7 @@ https://raw.githubusercontent.com/titobrasolin/it-IT.com_phocacart/main/update.x
 
 Dopo aver installato **una prima volta** lo zip da questo repository (vedi sopra), Joomla registra da solo questo sito di aggiornamento: da quel momento in poi le nuove versioni vengono segnalate automaticamente in **Sistema → Gestisci → Aggiornamenti**, senza bisogno di configurare nulla.
 
-Se invece hai già installato il pacchetto originale di Phoca e vuoi passare a questa traduzione senza reinstallare lo zip, puoi aggiungere l'URL sopra manualmente da **Sistema → Gestisci → Siti di aggiornamento → Nuovo**.
+Joomla non permette di aggiungere manualmente un nuovo sito di aggiornamento dalla pagina **Sistema → Gestisci → Siti di aggiornamento** (non esiste un pulsante "Nuovo": quell'elenco mostra solo le voci già registrate dalle estensioni installate). Se hai già installato il pacchetto originale di Phoca, per agganciarti agli aggiornamenti di questa traduzione devi installare lo zip di questo repository **in sovrascrittura** sopra quello esistente: l'installazione registrerà automaticamente il sito di aggiornamento, che da quel momento comparirà nell'elenco e potrai eventualmente modificarne l'URL con l'icona a matita.
 
 ## Come nascono le release
 
