@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<updates>
+    <update>
+        <name>it-IT com_phocacart translation</name>
+        <description>Traduzione italiana per PhocaCart, corretta e mantenuta a partire dal pacchetto generato dall'IA ufficiale di Phoca.</description>
+        <element>com_phocacart</element>
+        <type>file</type>
+        <client>site</client>
+        <version>6.0.1</version>
+        <infourl title="it-IT.com_phocacart on GitHub">https://github.com/titobrasolin/it-IT.com_phocacart</infourl>
+        <downloads>
+            <downloadurl type="full" format="zip">https://github.com/titobrasolin/it-IT.com_phocacart/releases/download/v6.0.1/it-IT_com_phocacart_lang_6.0.1.zip</downloadurl>
+        </downloads>
+        <tags>
+            <tag>stable</tag>
+        </tags>
+        <maintainer>Tito Brasolin</maintainer>
+        <maintainerurl>https://github.com/titobrasolin</maintainerurl>
+        <targetplatform name="joomla" version="4"/>
+    </update>
+    <update>
+        <name>it-IT com_phocacart translation</name>
+        <description>Traduzione italiana per PhocaCart, corretta e mantenuta a partire dal pacchetto generato dall'IA ufficiale di Phoca.</description>
+        <element>com_phocacart</element>
+        <type>file</type>
+        <client>site</client>
+        <version>6.0.1</version>
+        <infourl title="it-IT.com_phocacart on GitHub">https://github.com/titobrasolin/it-IT.com_phocacart</infourl>
+        <downloads>
+            <downloadurl type="full" format="zip">https://github.com/titobrasolin/it-IT.com_phocacart/releases/download/v6.0.1/it-IT_com_phocacart_lang_6.0.1.zip</downloadurl>
+        </downloads>
+        <tags>
+            <tag>stable</tag>
+        </tags>
+        <maintainer>Tito Brasolin</maintainer>
+        <maintainerurl>https://github.com/titobrasolin</maintainerurl>
+        <targetplatform name="joomla" version="5"/>
+    </update>
+</updates>
