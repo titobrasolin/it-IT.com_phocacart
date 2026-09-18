@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <extension type="file" method="upgrade" version="6.0">
     <name>it-IT com_phocacart translation</name>
-    <creationDate>2026-09-17</creationDate>
+    <creationDate>2026-09-18</creationDate>
     <author>Phoca | Jan Pavelka | PHOCA AI | AI</author>
 	<authorEmail></authorEmail>
 	<authorUrl>https://www.phoca.cz</authorUrl>
     <copyright>Copyright Phoca (c) 2026</copyright>
     <description>AI-generated translation that serves as the basis for creating a standard translation</description>
-    <version>6.0.1</version>
+    <version>6.0.2</version>
     <fileset>
         <files target="language/it-IT">
                 <filename>it-IT.com_phocacart.ini</filename>
