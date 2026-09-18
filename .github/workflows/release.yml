@@ -56,7 +56,7 @@ jobs:
               <update>
                   <name>it-IT com_phocacart translation</name>
                   <description>Traduzione italiana per PhocaCart, corretta e mantenuta a partire dal pacchetto generato dall'IA ufficiale di Phoca.</description>
-                  <element>com_phocacart</element>
+                  <element>it-IT.com_phocacart</element>
                   <type>file</type>
                   <client>site</client>
                   <version>${VERSION}</version>
@@ -74,7 +74,7 @@ jobs:
               <update>
                   <name>it-IT com_phocacart translation</name>
                   <description>Traduzione italiana per PhocaCart, corretta e mantenuta a partire dal pacchetto generato dall'IA ufficiale di Phoca.</description>
-                  <element>com_phocacart</element>
+                  <element>it-IT.com_phocacart</element>
                   <type>file</type>
                   <client>site</client>
                   <version>${VERSION}</version>
