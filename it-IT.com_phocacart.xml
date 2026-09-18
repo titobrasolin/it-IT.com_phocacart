@@ -7,7 +7,7 @@
 	<authorUrl>https://www.phoca.cz</authorUrl>
     <copyright>Copyright Phoca (c) 2026</copyright>
     <description>AI-generated translation that serves as the basis for creating a standard translation</description>
-    <version>6.0.2</version>
+    <version>6.0.3</version>
     <fileset>
         <files target="language/it-IT">
                 <filename>it-IT.com_phocacart.ini</filename>
